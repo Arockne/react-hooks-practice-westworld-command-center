@@ -9,7 +9,7 @@ function ColdStorage({ hosts, setSelectedHost, selectedHost }) {
         <h3 className="labels">ColdStorage</h3>
       </Segment>
       <Segment compact>
-        <HostList hosts={hosts} setSelectedHost={setSelectedHost} selectedHost={selectedHost}/>
+        <HostList hosts={hosts} setSelectedHost={setSelectedHost} selectedHost={selectedHost} />
       </Segment>
     </Segment.Group>
   );

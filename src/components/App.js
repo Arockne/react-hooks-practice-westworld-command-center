@@ -21,10 +21,31 @@ function App() {
     .then(setAreas)
   }, []) 
 
+  function handlChangeHostData(id, changedData) {
+    fetch(`http://localhost:3001/hosts/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(changedData)
+    })
+    .then(r => r.json())
+    .then(data => {
+      setHosts(hosts.map(host => {
+        if (host.id === data.id) {
+          return data;
+        }
+        return host;
+      }))
+      setSelectedHost(data)
+    })
+  }
+  
+
   return (
     <Segment id="app">
       <WestworldMap />
-      <HeadQuarters hosts={hosts} selectedHost={selectedHost} setSelectedHost={setSelectedHost} areas={areas}/>
+      <HeadQuarters hosts={hosts} selectedHost={selectedHost} setSelectedHost={setSelectedHost} areas={areas} onChangeHostData={handlChangeHostData}/>
     </Segment>
   );
 }

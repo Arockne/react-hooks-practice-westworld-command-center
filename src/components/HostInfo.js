@@ -10,18 +10,21 @@ import {
 } from "semantic-ui-react";
 import "../stylesheets/HostInfo.css";
 
-function HostInfo({ host, areas }) {
+function HostInfo({ host, areas, onChangeHostData }) {
   // This state is just to show how the dropdown component works.
   // Options have to be formatted in this way (array of objects with keys of: key, text, value)
   // Value has to match the value in the object to render the right text.
 
   // IMPORTANT: But whether it should be stateful or not is entirely up to you. Change this component however you like.
   const [options] = useState(areas.map(area => {
-    return { key: area.name, text: area.name, value: area.name }
+    return { key: area.id, text: area.name, value: area.name }
   }))
   //{ key: "another_area", text: "Another Area", value: "another_area" },
-  const [value] = useState(host.area);
+  // const [value, setValue] = useState(host.area);
 
+  // useEffect(() => {
+  //   setValue(host.area)
+  // }, [host])
   /*
   {
 "id": 2,
@@ -35,10 +38,11 @@ function HostInfo({ host, areas }) {
     // the 'value' attribute is given via Semantic's Dropdown component.
     // Put a debugger or console.log in here and see what the "value" variable is when you pass in different options.
     // See the Semantic docs for more info: https://react.semantic-ui.com/modules/dropdown/#usage-controlled
+    onChangeHostData(host.id, {area: value})
   }
 
-  function handleRadioChange() {
-    console.log("The radio button fired");
+  function handleRadioChange(e, {checked}) {
+    onChangeHostData(host.id ,{active: checked})
   }
 
 
@@ -77,8 +81,8 @@ function HostInfo({ host, areas }) {
               {/* Checked takes a boolean and determines what position the switch is in. Should it always be true? */}
               <Radio
                 onChange={handleRadioChange}
-                label={"Active"}
-                checked={true}
+                label={host.active ? "Active" : "Decommissioned"}
+                checked={host.active}
                 slider
               />
             </Card.Meta>
@@ -86,7 +90,7 @@ function HostInfo({ host, areas }) {
             Current Area:
             <Dropdown
               onChange={handleOptionChange}
-              value={value}
+              value={host.area}
               options={options}
               selection
             />
