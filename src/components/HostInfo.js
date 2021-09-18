@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Radio,
   Icon,
@@ -16,23 +16,10 @@ function HostInfo({ host, areas, onChangeHostData }) {
   // Value has to match the value in the object to render the right text.
 
   // IMPORTANT: But whether it should be stateful or not is entirely up to you. Change this component however you like.
-  const [options] = useState(areas.map(area => {
+  const options = areas.map(area => {
     return { key: area.id, text: area.name, value: area.name }
-  }))
+  })
   //{ key: "another_area", text: "Another Area", value: "another_area" },
-  // const [value, setValue] = useState(host.area);
-
-  // useEffect(() => {
-  //   setValue(host.area)
-  // }, [host])
-  /*
-  {
-"id": 2,
-"name": "lowlands",
-"limit": 6,
-"auth_req": false
-},
-  */
 
   function handleOptionChange(e, { value }) {
     // the 'value' attribute is given via Semantic's Dropdown component.
@@ -45,20 +32,6 @@ function HostInfo({ host, areas, onChangeHostData }) {
     onChangeHostData(host.id ,{active: checked})
   }
 
-
-  /*
-
-{
-"id": 1,
-"firstName": "Dolores",
-"lastName": "Abernathy",
-"active": false,
-"imageUrl": "https://vignette.wikia.nocookie.net/westworld/images/5/51/Dolores_Abernathy_Vanishing_Point.jpg/revision/latest?cb=20180613181613",
-"gender": "Female",
-"area": "lowlands",
-"authorized": false
-},
-   */
   return (
     <Grid>
       <Grid.Column width={6}>
