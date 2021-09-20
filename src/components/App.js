@@ -22,6 +22,15 @@ function App() {
   }, []) 
 
   function handlChangeHostData(id, changedData) {
+    if (changedData.area) {
+      const area = areas.find(area => area.name === changedData.area)
+      const numHostInArea = hosts.filter(host => host.area === changedData.area).length;
+
+      if (area.limit === numHostInArea) {
+        console.log('Limit REACH!', area , numHostInArea)
+        return;
+      }
+    }
     fetch(`http://localhost:3001/hosts/${id}`, {
       method: 'PATCH',
       headers: {
