@@ -44,7 +44,7 @@ function App() {
 
   return (
     <Segment id="app">
-      <WestworldMap areas={areas}/>
+      <WestworldMap hosts={hosts} areas={areas} selectedHost={selectedHost} setSelectedHost={setSelectedHost}/>
       <HeadQuarters hosts={hosts} selectedHost={selectedHost} setSelectedHost={setSelectedHost} areas={areas} onChangeHostData={handlChangeHostData}/>
     </Segment>
   );

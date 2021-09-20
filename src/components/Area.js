@@ -1,7 +1,7 @@
 import React from "react";
 import "../stylesheets/Area.css";
 
-function Area({ area }) {
+function Area({ hosts, area, selectedHost, setSelectedHost }) {
   const { name, limit } = area
   const areaName = name.split('_').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')
   console.log(areaName)
