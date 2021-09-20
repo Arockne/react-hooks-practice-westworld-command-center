@@ -3,14 +3,13 @@ import "../stylesheets/Area.css";
 import HostList from './HostList'
 
 function Area({ hosts, area, selectedHost, setSelectedHost }) {
-  const { name, limit } = area
-  const areaName = name.split('_').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')
+  const areaName = area.name.split('_').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')
   
-  const hostInArea = hosts.filter(host => host.area === name)
+  const hostInArea = hosts.filter(host => host.area === area.name)
   return (
     <div
       className="area"
-      id={name}
+      id={area.name}
     >
       <h3 className="labels">
         {areaName}
