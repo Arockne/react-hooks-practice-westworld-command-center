@@ -1,10 +1,12 @@
 import React from "react";
 import "../stylesheets/Area.css";
+import HostList from './HostList'
 
 function Area({ hosts, area, selectedHost, setSelectedHost }) {
   const { name, limit } = area
   const areaName = name.split('_').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')
-  console.log(areaName)
+  
+  const hostInArea = hosts.filter(host => host.area === name)
   return (
     <div
       className="area"
@@ -13,7 +15,7 @@ function Area({ hosts, area, selectedHost, setSelectedHost }) {
       <h3 className="labels">
         {areaName}
       </h3>
-      {/* See Checkpoint 1 item 2 in the Readme for a clue as to what goes here */}
+      <HostList hosts={hostInArea} setSelectedHost={setSelectedHost} selectedHost={selectedHost} />
     </div>
   );
 }
