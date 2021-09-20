@@ -21,7 +21,7 @@ function App() {
     .then(setAreas)
   }, []) 
 
-  function handlChangeHostData(id, changedData) {
+  function handleChangeHostData(id, changedData) {
     if (changedData.area) {
       const area = areas.find(area => area.name === changedData.area)
       const numHostInArea = hosts.filter(host => host.area === changedData.area).length;
@@ -49,12 +49,20 @@ function App() {
       setSelectedHost(data)
     })
   }
+
+  function handleActivation(active) {
+    const updatedHosts = hosts.map(host => {
+      return {...host, active}
+    })
+
+    setHosts(updatedHosts)
+  }
   
 
   return (
     <Segment id="app">
       <WestworldMap hosts={hosts} areas={areas} selectedHost={selectedHost} setSelectedHost={setSelectedHost}/>
-      <HeadQuarters hosts={hosts} selectedHost={selectedHost} setSelectedHost={setSelectedHost} areas={areas} onChangeHostData={handlChangeHostData}/>
+      <HeadQuarters hosts={hosts} selectedHost={selectedHost} setSelectedHost={setSelectedHost} areas={areas} onChangeHostData={handleChangeHostData} onActivation={handleActivation}/>
     </Segment>
   );
 }
