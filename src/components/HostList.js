@@ -3,6 +3,7 @@ import { Card } from "semantic-ui-react";
 import Host from './Host'
 
 function HostList({ hosts, setSelectedHost, selectedHost }) {
+  hosts = hosts.filter(host => !host.active)
   return (
     <Card.Group itemsPerRow={6}>
       {

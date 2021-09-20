@@ -7,7 +7,7 @@
       "active": false,
       "imageUrl": "https://vignette.wikia.nocookie.net/westworld/images/5/51/Dolores_Abernathy_Vanishing_Point.jpg/revision/latest?cb=20180613181613",
       "gender": "Female",
-      "area": "lowlands",
+      "area": "under_construction",
       "authorized": false
     },
     {
@@ -87,7 +87,7 @@
       "active": true,
       "imageUrl": "https://vignette.wikia.nocookie.net/westworld/images/a/a9/Teddy_Flood_Phase_Space.jpg/revision/latest/scale-to-width-down/310?cb=20180526115338",
       "gender": "Male",
-      "area": "python_pass",
+      "area": "under_construction",
       "authorized": false
     },
     {
