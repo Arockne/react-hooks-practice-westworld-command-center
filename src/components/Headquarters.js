@@ -5,7 +5,7 @@ import "../stylesheets/Headquarters.css";
 import ColdStorage from './ColdStorage'
 import LogPanel from './LogPanel'
 
-function Headquarters({ hosts, selectedHost, setSelectedHost, areas, onChangeHostData, onActivation }) {
+function Headquarters({ hosts, selectedHost, setSelectedHost, areas, onChangeHostData, onActivation, logs }) {
   const notActive = hosts.filter(host => !host.active)
   return (
     <Grid celled="internally">
@@ -16,7 +16,7 @@ function Headquarters({ hosts, selectedHost, setSelectedHost, areas, onChangeHos
         <Details selectedHost={selectedHost} areas={areas} onChangeHostData={onChangeHostData}/>
       </Grid.Column>
       <Grid.Column width={3}>
-        <LogPanel onActivation={onActivation}/>
+        <LogPanel onActivation={onActivation} logs={logs}/>
       </Grid.Column>
     </Grid>
   );

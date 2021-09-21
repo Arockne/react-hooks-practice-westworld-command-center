@@ -3,11 +3,13 @@ import { Segment } from "semantic-ui-react";
 import "../stylesheets/App.css";
 import WestworldMap from './WestworldMap'
 import HeadQuarters from './Headquarters'
+import { Log } from "../services/Log";
 
 function App() {
   const [hosts, setHosts] = useState([])
   const [selectedHost, setSelectedHost] = useState(null)
   const [areas, setAreas] = useState([])
+  const [logs, setLogs] = useState([])
 
   useEffect(() => {
     fetch('http://localhost:3001/hosts')
@@ -40,6 +42,19 @@ function App() {
     })
     .then(r => r.json())
     .then(data => {
+      if (changedData.area) {
+        const log = Log.notify(`${data.firstName} set in area ${data.area}`)
+        setLogs([ log, ...logs ])
+      }
+      if (changedData.active === true) {
+        const log = Log.warn(`Activated ${data.firstName}`)
+        setLogs([ log, ...logs ])
+      }
+      else if (changedData.active === false) {
+        const log = Log.notify(`Decommissioned ${data.firstName}`)
+        setLogs([ log, ...logs ])
+      }
+
       setHosts(hosts.map(host => {
         if (host.id === data.id) {
           return data;
@@ -50,11 +65,17 @@ function App() {
     })
   }
 
-  function handleActivation(active) {
+  function onActivation(active) {
     const updatedHosts = hosts.map(host => {
       return {...host, active}
     })
-
+    if (active) {
+      const log = Log.warn(`Activating all hosts!`)
+      setLogs([ log, ...logs ])
+    } else {
+      const log = Log.notify(`Decommissiong all hosts!`)
+      setLogs([ log, ...logs ])
+    }
     setHosts(updatedHosts)
   }
   
@@ -62,7 +83,7 @@ function App() {
   return (
     <Segment id="app">
       <WestworldMap hosts={hosts} areas={areas} selectedHost={selectedHost} setSelectedHost={setSelectedHost}/>
-      <HeadQuarters hosts={hosts} selectedHost={selectedHost} setSelectedHost={setSelectedHost} areas={areas} onChangeHostData={handleChangeHostData} onActivation={handleActivation}/>
+      <HeadQuarters hosts={hosts} selectedHost={selectedHost} setSelectedHost={setSelectedHost} areas={areas} onChangeHostData={handleChangeHostData} onActivation={onActivation} logs={logs}/>
     </Segment>
   );
 }
