@@ -28,7 +28,7 @@ function App() {
       const area = areas.find(area => area.name === changedData.area)
       const numHostInArea = hosts.filter(host => host.area === changedData.area).length;
       const host = hosts.find(host => host.id === id)
-//Error: Too many hosts. Cannot add {first name of host} to {formatted area name}
+
       if (area.limit === numHostInArea) {
         const log = Log.error(`Too many hosts. Cannot add ${host.firstName} to ${area.name}`)
         setLogs([ log, ...logs ])
