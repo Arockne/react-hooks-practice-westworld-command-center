@@ -64,7 +64,7 @@
       "id": 7,
       "firstName": "Akane",
       "lastName": "n/a",
-      "active": true,
+      "active": false,
       "imageUrl": "https://vignette.wikia.nocookie.net/westworld/images/f/f3/Akane.jpg/revision/latest/scale-to-width-down/310?cb=20180520132523",
       "gender": "Female",
       "area": "lowlands",
